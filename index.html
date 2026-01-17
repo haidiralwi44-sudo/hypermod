@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HYPERMOD PROJECT Premium - Modifikasi Aplikasi Ojol</title>
+
+  <!-- Inter Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            hyper: {
+              50: '#ECFFF5',
+              100: '#D6FBE8',
+              200: '#A9F3CF',
+              300: '#76E7B2',
+              400: '#3AD18A',
+              500: '#16B46F',
+              600: '#08945A',
+              700: '#057349',
+              800: '#05593A',
+              900: '#03432C',
+            },
+          },
+          boxShadow: {
+            soft: '0 18px 45px rgba(4,120,87,0.28)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <!-- Floating Actions -->
+  <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-40">
+    <a
+      href="https://wa.me/6289678528585"
+      target="_blank"
+      class="flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-emerald-500/40 hover:scale-105 transition-transform"
+      aria-label="Chat WhatsApp Hypermod Project"
+    >
+      <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+    <a
+      href="https://t.me/Hypermods15"
+      target="_blank"
+      class="flex h-12 w-12 items-center justify-center rounded-full bg-sky-500 text-white shadow-lg shadow-sky-400/40 hover:scale-105 transition-transform"
+      aria-label="Chat Telegram Hypermod Project"
+    >
+      <i class="fab fa-telegram-plane text-xl"></i>
+    </a>
+    <button
+      id="scrollTopBtn"
+      class="hidden h-11 w-11 items-center justify-center rounded-full bg-hyper-700 text-white shadow-md hover:bg-hyper-800 transition-all"
+      aria-label="Kembali ke atas"
+    >
+      <i class="fas fa-arrow-up text-sm"></i>
+    </button>
+  </div>
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-30 border-b border-emerald-900/10 bg-emerald-900/95 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-6">
+      <div class="flex items-center gap-2">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500 text-white shadow-md shadow-emerald-500/40">
+          <i class="fas fa-bolt text-lg"></i>
+        </div>
+        <div>
+          <p class="text-xs font-semibold tracking-wide text-emerald-100 uppercase">Hypermod Project</p>
+          <p class="text-sm font-semibold text-white">Premium Mod Service</p>
+        </div>
+      </div>
+
+      <nav class="hidden items-center gap-8 text-sm font-medium text-emerald-50 lg:flex">
+        <a href="#home" class="hover:text-white">Beranda</a>
+        <a href="#services" class="hover:text-white">Layanan</a>
+        <a href="#features" class="hover:text-white">Fitur</a>
+        <a href="#pricing" class="hover:text-white">Harga</a>
+        <a href="#contact" class="hover:text-white">Kontak</a>
+      </nav>
+
+      <div class="hidden items-center gap-3 lg:flex">
+        <a
+          href="#pricing"
+          class="rounded-full border border-emerald-400/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-emerald-50 hover:bg-emerald-700/60"
+        >
+          Lihat Paket
+        </a>
+        <a
+          href="https://wa.me/6289678528585"
+          target="_blank"
+          class="rounded-full bg-emerald-400 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-emerald-950 shadow-soft hover:bg-emerald-300"
+        >
+          Download / Konsultasi
+        </a>
+      </div>
+
+      <button
+        id="mobileMenuToggle"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-emerald-400/40 text-emerald-50 lg:hidden"
+        aria-label="Buka menu navigasi"
+      >
+        <i class="fas fa-bars text-lg"></i>
+      </button>
+    </div>
+
+    <nav
+      id="mobileMenu"
+      class="hidden border-t border-emerald-800 bg-emerald-900/98 px-4 pb-4 pt-2 text-sm text-emerald-50 lg:hidden"
+    >
+      <div class="flex flex-col gap-2">
+        <a href="#home" class="py-1.5">Beranda</a>
+        <a href="#services" class="py-1.5">Layanan</a>
+        <a href="#features" class="py-1.5">Fitur Unggulan</a>
+        <a href="#pricing" class="py-1.5">Paket Harga</a>
+        <a href="#contact" class="py-1.5">Kontak</a>
+      </div>
+      <div class="mt-3 flex flex-col gap-2">
+        <a
+          href="#pricing"
+          class="flex items-center justify-center rounded-full border border-emerald-400/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide"
+        >
+          Lihat Paket
+        </a>
+        <a
+          href="https://wa.me/6289678528585"
+          target="_blank"
+          class="flex items-center justify-center rounded-full bg-emerald-400 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-emerald-950"
+        >
+          Konsultasi via WhatsApp
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section
+    id="home"
+    class="relative overflow-hidden bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 pb-20 pt-14 text-white lg:pb-28 lg:pt-20"
+  >
+    <div class="pointer-events-none absolute inset-x-0 -top-40 h-72 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.32),_transparent_55%)]"></div>
+
+    <div class="relative mx-auto flex max-w-6xl flex-col gap-12 px-4 lg:flex-row lg:items-center lg:gap-16 lg:px-6">
+      <!-- Left -->
+      <div class="max-w-xl space-y-6">
+        <span class="inline-flex items-center gap-2 rounded-full bg-emerald-700/60 px-3 py-1 text-xs font-medium text-emerald-100 ring-1 ring-emerald-500/60">
+          <i class="fas fa-star text-amber-300"></i>
+          HYPERMOD PROJECT • Premium Ojol Mod Service
+        </span>
+
+        <h1 class="text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
+          Modifikasi Aplikasi
+          <span class="text-emerald-300">Grab, Gojek & Shopee</span>
+          <br />
+          untuk Driver <span class="text-amber-300">Serius Cari Order</span>
+        </h1>
+
+        <p class="text-sm leading-relaxed text-emerald-100/90 sm:text-base">
+          Layanan modifikasi aplikasi ojol premium dengan fitur eksklusif seperti auto-accept, high priority order, dan optimasi
+          performa. Dirancang khusus untuk meningkatkan produktivitas dan potensi penghasilan driver.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <a
+            href="https://wa.me/6289678528585"
+            target="_blank"
+            class="inline-flex items-center gap-2 rounded-full bg-emerald-400 px-6 py-2.5 text-sm font-semibold text-emerald-950 shadow-soft hover:bg-emerald-300"
+          >
+            <i class="fab fa-whatsapp text-lg"></i>
+            Konsultasi Gratis
+          </a>
+          <a
+            href="#pricing"
+            class="inline-flex items-center gap-2 rounded-full border border-emerald-400/80 bg-emerald-800/40 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-emerald-100 hover:bg-emerald-700/60"
+          >
+            Lihat Paket Harga
+          </a>
+        </div>
+
+        <div class="mt-5 flex flex-wrap gap-6 text-sm text-emerald-100/90">
+          <div>
+            <p class="text-2xl font-extrabold text-emerald-200">100+</p>
+            <p class="text-xs uppercase tracking-wide text-emerald-200/80">Driver Telah Aktif</p>
+          </div>
+          <div>
+            <p class="text-2xl font-extrabold text-emerald-200">92%</p>
+            <p class="text-xs uppercase tracking-wide text-emerald-200/80">Tingkat Kepuasan Pengguna</p>
+          </div>
+          <div>
+            <p class="text-2xl font-extrabold text-emerald-200">24/7</p>
+            <p class="text-xs uppercase tracking-wide text-emerald-200/80">Bantuan Support</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Feature cards -->
+      <div
+        class="w-full max-w-md rounded-3xl bg-white/95 p-4 shadow-soft ring-1 ring-emerald-100/80 backdrop-blur-sm lg:mt-4"
+      >
+        <div class="flex items-center justify-between gap-3 border-b border-slate-100 pb-3">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wide text-emerald-500">Premium Panel</p>
+            <p class="text-sm font-semibold text-slate-900">Pilih aplikasi yang ingin dimodifikasi</p>
+          </div>
+          <span class="rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
+            Anti Resiko Baneed Risk*
+          </span>
+        </div>
+
+        <div class="mt-4 grid grid-cols-2 gap-3">
+          <div class="flex flex-col gap-2 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-4 text-white shadow-md">
+            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-900/20">
+              <i class="fas fa-motorcycle text-lg"></i>
+            </div>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-emerald-100/90">Grab Mod</p>
+              <p class="text-xs text-emerald-50/90">Fitur high priority & auto-accept</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2 rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+              <i class="fas fa-car text-lg"></i>
+            </div>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-slate-900">Gojek Mod</p>
+              <p class="text-xs text-slate-500">Unlimited TS & filter order</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2 rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+              <i class="fas fa-shopping-bag text-lg"></i>
+            </div>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-slate-900">Shopee Mod</p>
+              <p class="text-xs text-slate-500">Boost performa e-commerce</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2 rounded-2xl bg-slate-900 p-4 text-emerald-50">
+            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-300">
+              <i class="fas fa-shield-alt text-lg"></i>
+            </div>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-emerald-200">Keamanan</p>
+              <p class="text-xs text-emerald-100/90">Enkripsi & proteksi device</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-3 text-[11px] leading-relaxed text-slate-500">
+          *Fitur anti-ban mengikuti syarat & ketentuan masing-masing aplikasi. Gunakan secara wajar sesuai panduan dari tim
+          Hypermod Project.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="bg-white py-16 lg:py-20">
+    <div class="mx-auto max-w-6xl px-4 lg:px-6">
+      <div class="text-center">
+        <h2 class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          Layanan <span class="text-emerald-600">HYPERMOD PROJECT</span>
+        </h2>
+        <p class="mx-auto mt-3 max-w-2xl text-sm text-slate-500 sm:text-base">
+          Paket modifikasi siap pakai untuk driver Grab, Gojek, dan Shopee dengan fitur premium yang tidak tersedia di versi
+          original.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <!-- Grab -->
+        <article class="flex flex-col rounded-2xl border border-emerald-50 bg-white p-6 shadow-sm shadow-emerald-50/60">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+            <i class="fas fa-motorcycle text-xl"></i>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-slate-900">Grab Driver Mod APK</h3>
+          <p class="mt-2 text-sm text-slate-500">
+            Modifikasi aplikasi Grab Driver dengan fokus pada stabilitas order dan prioritas penerimaan job di area yang Anda
+            inginkan.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Set radius & filter order otomatis</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Auto-accept job & anti telat respon</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Bonus akses panduan setting & fake GPS pro</span>
+            </li>
+          </ul>
+          <button
+            class="mt-5 inline-flex items-center justify-center rounded-full border border-emerald-500/80 bg-emerald-50 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:bg-emerald-100"
+          >
+            Detail & Demo
+          </button>
+        </article>
+
+        <!-- Gojek -->
+        <article class="flex flex-col rounded-2xl border border-emerald-50 bg-white p-6 shadow-sm shadow-emerald-50/60">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+            <i class="fas fa-car text-xl"></i>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-slate-900">Gojek Driver Mod APK</h3>
+          <p class="mt-2 text-sm text-slate-500">
+            Versi modifikasi driver Gojek dengan optimasi kecepatan sistem, filter order, dan kontrol penuh terhadap jenis
+            layanan yang aktif.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Unlimited TS* & interval refresh dipercepat</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Priority order & sortir jarak otomatis</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Khusus untuk driver aktif & terverifikasi</span>
+            </li>
+          </ul>
+          <button
+            class="mt-5 inline-flex items-center justify-center rounded-full border border-emerald-500/80 bg-emerald-600 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm hover:bg-emerald-500"
+          >
+            Paket Terlaris
+          </button>
+        </article>
+
+        <!-- Shopee -->
+        <article class="flex flex-col rounded-2xl border border-emerald-50 bg-white p-6 shadow-sm shadow-emerald-50/60">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+            <i class="fas fa-shopping-bag text-xl"></i>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-slate-900">Shopee Driver / Food Mod APK</h3>
+          <p class="mt-2 text-sm text-slate-500">
+            Tingkatkan performa orderan Shopee Food & Express dengan pengaturan radius dan optimasi performa akun.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Fast job & prioritas order ramai</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Radius order tinggi & fleksibel</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Panduan lengkap anti error & kendala teknis</span>
+            </li>
+          </ul>
+          <button
+            class="mt-5 inline-flex items-center justify-center rounded-full border border-emerald-500/80 bg-emerald-50 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:bg-emerald-100"
+          >
+            Tanya Tim Kami
+          </button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="bg-slate-50 py-16 lg:py-20">
+    <div class="mx-auto max-w-6xl px-4 lg:px-6">
+      <div class="text-center">
+        <h2 class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          Fitur <span class="text-emerald-600">Unggulan</span>
+        </h2>
+        <p class="mx-auto mt-3 max-w-2xl text-sm text-slate-500 sm:text-base">
+          Setiap paket Hypermod Project sudah termasuk update rutin dan dukungan penuh agar akun ojol Anda tetap aman dan
+          produktif.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-4">
+        <div class="flex flex-col items-start gap-3 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
+          <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+            <i class="fas fa-shield-alt text-lg"></i>
+          </div>
+          <h3 class="text-sm font-semibold text-slate-900">Keamanan Optimal</h3>
+          <p class="text-xs text-slate-500">
+            Setting disesuaikan dengan pola aman, minim risiko banned selama digunakan secara wajar.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-start gap-3 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
+          <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+            <i class="fas fa-sync-alt text-lg"></i>
+          </div>
+          <h3 class="text-sm font-semibold text-slate-900">Update Rutin</h3>
+          <p class="text-xs text-slate-500">
+            Aplikasi selalu mengikuti update resmi Grab, Gojek, dan Shopee untuk menjaga kompatibilitas.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-start gap-3 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
+          <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+            <i class="fas fa-headset text-lg"></i>
+          </div>
+          <h3 class="text-sm font-semibold text-slate-900">Support 24/7</h3>
+          <p class="text-xs text-slate-500">
+            Tim siap membantu instalasi, setting, dan troubleshooting kapan pun Anda butuh.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-start gap-3 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
+          <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+            <i class="fas fa-mobile-alt text-lg"></i>
+          </div>
+          <h3 class="text-sm font-semibold text-slate-900">Multi Device</h3>
+          <p class="text-xs text-slate-500">
+            Kompatibel untuk berbagai tipe Android, baik root maupun non-root (sesuai paket).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="bg-white py-16 lg:py-20">
+    <div class="mx-auto max-w-6xl px-4 lg:px-6">
+      <div class="text-center">
+        <h2 class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          Paket <span class="text-emerald-600">Harga</span>
+        </h2>
+        <p class="mx-auto mt-3 max-w-2xl text-sm text-slate-500 sm:text-base">
+          Pilih paket sesuai kebutuhan aplikasi yang Anda gunakan. Pembayaran sekali, akses fitur premium seumur hidup*.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <!-- Basic -->
+        <article class="flex flex-col rounded-2xl border border-slate-100 bg-slate-50/60 p-6 shadow-sm">
+          <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-700">GOJEK DRIVER</h3>
+          <p class="mt-1 text-xs text-slate-500">Untuk 1 aplikasi pilihan (Grab / Gojek / Shopee).</p>
+          <div class="mt-4 flex items-baseline gap-1">
+            <span class="text-2xl font-extrabold text-slate-900">Rp 70.000</span>
+            <span class="text-xs text-slate-500">/ sekali bayar</span>
+          </div>
+          <ul class="mt-4 flex-1 space-y-2 text-sm text-slate-600">
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>1 aplikasi mod pilihan</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Free update sampai 30 hari</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Bantuan instalasi via WhatsApp</span>
+            </li>
+          </ul>
+          <button
+            class="mt-5 inline-flex items-center justify-center rounded-full border border-emerald-500/80 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:bg-emerald-50"
+          >
+            Pilih Paket Basic
+          </button>
+        </article>
+
+        <!-- Pro -->
+        <article
+          class="relative flex flex-col rounded-2xl border border-emerald-500/60 bg-gradient-to-b from-emerald-50 to-white p-6 shadow-soft"
+        >
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-emerald-500 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white shadow-md">
+            Paling Populer
+          </div>
+          <h3 class="mt-1 text-sm font-semibold uppercase tracking-wide text-emerald-800">GRAB DRIVER</h3>
+          <p class="mt-1 text-xs text-slate-600">Semua aplikasi (Grab + Gojek + Shopee) untuk 1 device.</p>
+          <div class="mt-4 flex items-baseline gap-1">
+            <span class="text-3xl font-extrabold text-emerald-700">Rp 70.000</span>
+            <span class="text-xs text-slate-500">/ sekali bayar</span>
+          </div>
+          <ul class="mt-4 flex-1 space-y-2 text-sm text-slate-700">
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Akses semua aplikasi ojol populer</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Free update lifetime*</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Priority support via WhatsApp & Telegram</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Bantuan setting & optimasi akun</span>
+            </li>
+          </ul>
+          <button
+            class="mt-5 inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-md hover:bg-emerald-500"
+          >
+            Pilih Paket Pro
+          </button>
+        </article>
+
+        <!-- Ultimate -->
+        <article class="flex flex-col rounded-2xl border border-slate-100 bg-slate-50/60 p-6 shadow-sm">
+          <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-700">SHOPEE DRIVER</h3>
+          <p class="mt-1 text-xs text-slate-500">Untuk driver serius dengan banyak device & akun.</p>
+          <div class="mt-4 flex items-baseline gap-1">
+            <span class="text-2xl font-extrabold text-slate-900">Rp 70.000</span>
+            <span class="text-xs text-slate-500">/ mulai</span>
+          </div>
+          <ul class="mt-4 flex-1 space-y-2 text-sm text-slate-600">
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Multi device (sesuai kesepakatan)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Update lifetime + prioritas tertinggi</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Custom fitur sesuai kebutuhan rute & jam kerja</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fas fa-check mt-0.5 text-emerald-500"></i>
+              <span>Konsultasi intensif 1-on-1</span>
+            </li>
+          </ul>
+          <button
+            class="mt-5 inline-flex items-center justify-center rounded-full border border-emerald-500/80 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:bg-emerald-50"
+          >
+            Diskusikan Paket
+          </button>
+        </article>
+      </div>
+
+      <p class="mt-6 text-center text-[11px] text-slate-500">
+        *Ketentuan lifetime & detail fitur akan dijelaskan saat konsultasi. Harga dapat berubah sewaktu-waktu mengikuti kebijakan
+        Hypermod Project.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-slate-50 py-16 lg:py-20">
+    <div class="mx-auto max-w-6xl px-4 lg:px-6">
+      <div class="text-center">
+        <h2 class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          Hubungi <span class="text-emerald-600">Kami</span>
+        </h2>
+        <p class="mx-auto mt-3 max-w-2xl text-sm text-slate-500 sm:text-base">
+          Kirimkan detail kebutuhan Anda, tim Hypermod Project akan membantu memilih paket dan setting terbaik untuk akun Anda.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-8 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.3fr)]">
+        <!-- Contact info -->
+        <div class="space-y-5">
+          <h3 class="text-base font-semibold text-slate-900">Informasi Kontak</h3>
+
+          <div class="space-y-4 text-sm text-slate-600">
+            <div class="flex gap-3">
+              <div class="mt-0.5 flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <i class="fas fa-envelope text-sm"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-slate-900">Email</p>
+                <p>support@hypermodproject.com</p>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <div class="mt-0.5 flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <i class="fab fa-whatsapp text-sm"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-slate-900">WhatsApp</p>
+                <p>+62 896-7852-8585</p>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <div class="mt-0.5 flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <i class="fab fa-telegram-plane text-sm"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-slate-900">Telegram</p>
+                <p>@Hypermods15</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Ikuti kami</p>
+            <div class="mt-3 flex gap-3 text-slate-600">
+              <a
+                href="#"
+                class="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-slate-500 shadow-sm hover:text-emerald-600"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-slate-500 shadow-sm hover:text-emerald-600"
+              >
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a
+                href="#"
+                class="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-slate-500 shadow-sm hover:text-emerald-600"
+              >
+                <i class="fab fa-youtube"></i>
+              </a>
+              <a
+                href="#"
+                class="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-slate-500 shadow-sm hover:text-emerald-600"
+              >
+                <i class="fab fa-tiktok"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="rounded-2xl bg-white p-6 shadow-md shadow-emerald-50/80 ring-1 ring-slate-100">
+          <form id="contactForm" class="space-y-4 text-sm">
+            <div>
+              <label for="name" class="mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-600">
+                Nama Lengkap
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                placeholder="Masukkan nama Anda"
+                class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 outline-none ring-emerald-100 focus:border-emerald-500 focus:ring-2"
+              />
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2">
+              <div>
+                <label for="email" class="mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-600">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="emailanda@example.com"
+                  class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 outline-none ring-emerald-100 focus:border-emerald-500 focus:ring-2"
+                />
+              </div>
+
+              <div>
+                <label for="service" class="mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-600">
+                  Layanan yang diminati
+                </label>
+                <select
+                  id="service"
+                  name="service"
+                  required
+                  class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none ring-emerald-100 focus:border-emerald-500 focus:ring-2"
+                >
+                  <option value="">Pilih layanan</option>
+                  <option value="grab">Grab Driver Mod</option>
+                  <option value="gojek">Gojek Driver Mod</option>
+                  <option value="shopee">Shopee Driver Mod</option>
+                  <option value="paket-pro">Paket Pro (semua aplikasi)</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="message" class="mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-600">
+                Pesan
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                required
+                placeholder="Ceritakan kondisi akun & target penghasilan Anda..."
+                class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 outline-none ring-emerald-100 focus:border-emerald-500 focus:ring-2"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-emerald-500"
+            >
+              <i class="fas fa-paper-plane text-xs"></i>
+              Kirim Pesan ke Tim Hypermod
+            </button>
+
+            <p id="formStatus" class="mt-1 text-xs text-slate-500"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-slate-950 py-10 text-slate-300">
+    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-4 lg:flex-row lg:justify-between lg:px-6">
+      <div class="max-w-sm space-y-3">
+        <div class="flex items-center gap-2">
+          <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500 text-slate-950">
+            <i class="fas fa-bolt text-lg"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold tracking-wide text-emerald-200 uppercase">Hypermod Project</p>
+            <p class="text-sm font-semibold text-white">Premium Mod Service</p>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400">
+          Layanan modifikasi aplikasi ojol profesional dengan fokus pada performa, keamanan, dan pendampingan jangka panjang
+          untuk driver di seluruh Indonesia.
+        </p>
+      </div>
+
+      <div class="grid flex-1 gap-8 text-xs text-slate-400 sm:grid-cols-3">
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-wide text-slate-200">Tautan Cepat</h4>
+          <ul class="mt-3 space-y-2">
+            <li><a href="#home" class="hover:text-emerald-400">Beranda</a></li>
+            <li><a href="#services" class="hover:text-emerald-400">Layanan</a></li>
+            <li><a href="#features" class="hover:text-emerald-400">Fitur</a></li>
+            <li><a href="#pricing" class="hover:text-emerald-400">Harga</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-wide text-slate-200">Legal</h4>
+          <ul class="mt-3 space-y-2">
+            <li><a href="#" class="hover:text-emerald-400">Syarat & Ketentuan</a></li>
+            <li><a href="#" class="hover:text-emerald-400">Kebijakan Privasi</a></li>
+            <li><a href="#" class="hover:text-emerald-400">Disclaimer</a></li>
+            <li><a href="#" class="hover:text-emerald-400">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-wide text-slate-200">Newsletter</h4>
+          <p class="mt-3 text-[11px] text-slate-400">Dapatkan update seputar fitur baru & promo Hypermod Project.</p>
+          <form id="newsletterForm" class="mt-3 flex gap-2">
+            <input
+              type="email"
+              required
+              placeholder="Email Anda"
+              class="w-full rounded-full border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-slate-100 outline-none focus:border-emerald-500"
+            />
+            <button
+              type="submit"
+              class="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500 text-slate-950 hover:bg-emerald-400"
+            >
+              <i class="fas fa-paper-plane text-xs"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 border-t border-slate-800 pt-4">
+      <p class="text-center text-[11px] text-slate-500">
+        © 2026 Hypermod Project. All rights reserved. Website ini dibuat untuk tujuan promosi layanan modifikasi aplikasi ojol
+        premium.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Minimal JS for interactions -->
+  <script>
+    // Mobile menu
+    const mobileToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navLinks = mobileMenu.querySelectorAll('a');
+
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Scroll to top visibility
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 280) {
+        scrollTopBtn.classList.remove('hidden');
+        scrollTopBtn.classList.add('flex');
+      } else {
+        scrollTopBtn.classList.add('hidden');
+        scrollTopBtn.classList.remove('flex');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Contact form (Simulasi Kirim ke WhatsApp)
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const service = document.getElementById('service').value;
+        const message = "Halo Hypermod Project, nama saya " + name + ". Saya tertarik dengan layanan " + service + ".";
+
+        // Redirect ke WhatsApp dengan pesan otomatis
+        const whatsappUrl = `https://wa.me/6289678528585?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+      });
+    }
+
+    // Newsletter (demo)
+    const newsletterForm = document.getElementById('newsletterForm');
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Terima kasih! Anda sudah terdaftar dalam newsletter Hypermod Project.');
+      newsletterForm.reset();
+    });
+  </script>
+</body>
+</html>
